@@ -16,14 +16,16 @@ body {
 
 .calculator__mathSigns {
     display: flex;
-    margin: 0.2rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
 }
 
 .calculator__buttons {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    
+    margin-left: 0.3rem;
+    margin-right: 0.35rem;
 }
 
 .calculator__equals {
@@ -31,16 +33,20 @@ body {
     margin-top: 0.5rem;
     margin-right: 1rem;
     font-size: 1.5rem;
+    margin-left: -0.1rem;
 }
 
 .input__field {
-    padding-top: 1rem;
+    padding-top: 0.5rem;
     padding-right: 0.5rem;
     text-align: right;
-    font-size: 1.5rem;
-    height: 3rem;
+    font-size: 1.2rem;
+    min-height: 1.5rem;
     border: 1px solid lightgrey;
     margin: 0.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    word-wrap: break-word;
 }
 
 .button__mathSigns {
@@ -61,6 +67,5 @@ body {
 .button__Equals {
     background-color: lightskyblue;
     height: 11rem;
-    width: 3rem;
-            
+    width: 3.5rem;
 }
