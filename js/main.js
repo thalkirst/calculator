@@ -1,12 +1,16 @@
 let inputField = document.querySelector(".input__field");
 let allValues;
+let opArray = [];
+let numArray = [];
+let numArrayNumbers = [];
+let endResult;
 
 function valueParser() {
     const operators = ['\u002B', '\u2212', '\u00d7', '\u00f7'];
-    let opArray = [];
+
     let opArrayIndex = 0;
     let numArrayIndex = 0;
-    let numArray = [];
+
 
     if (operators.includes(allValues[0]) || allValues[0] === '.') {
         inputField.textContent = 'Cannot start with operator or . ';
@@ -24,14 +28,32 @@ function valueParser() {
                     numArray[numArrayIndex] = numArray[numArrayIndex] + allValues[i];
                 }
             }
-
         }
-
-        console.log(allValues);
-        console.log(numArray);
-        console.log(opArray);
+        numArrayNumbers = numArray.map(item => parseFloat(item));
     }
 }
+
+function counter () {
+    let result = numArrayNumbers[0]
+    let j = 0;
+    for (let i = 1; i < numArrayNumbers.length; i += 1) {
+        if (opArray[j] === '\u002B') {
+            result = result + numArrayNumbers[i];
+        }
+        if (opArray[j] === '\u2212') {
+            result = result - numArrayNumbers[i];
+        }
+        if (opArray[j] === '\u00d7') {
+            result = result * numArrayNumbers[i];
+        }
+        if (opArray[j] === '\u00f7') {
+            result = result / numArrayNumbers[i];
+        }
+        j = j +1;
+    }
+    return result;
+}
+
 
 ///set up eraser button///
 (document.querySelector(".button__eraser")).addEventListener("click", () => {
@@ -47,8 +69,16 @@ numbers.forEach(item => item.addEventListener("click", () => {
 ///set up equals///
 let equals = document.querySelector(".button__Equals");
 equals.addEventListener("click", () => {
+    opArray = [];
+    numArray = [];
+    numArrayNumbers = [];
     allValues = [...inputField.textContent];
-    inputField.textContent = '';
     valueParser();
+    if (numArray.length <= opArray.length) {
+        inputField.textContent = 'error: too many operators';    
+    } else {
+        endResult = counter();
+        inputField.textContent = endResult;
+    }
 })
 
